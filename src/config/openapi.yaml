@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+  title: Api Names - OpenAPI 3.0
+  description: |-
+    Este mini - servicio busca desglosar el apellido y nombre de una persona y determinar su género (Femenino/Masculino)
+    
+    Solo funciona basado en las personas nacidas y registradas en Argentina.
+  contact:
+    email: hansjal@gmail.com
+  version: 1.0.11
+servers:
+  - url: http://localhost:3001/api
+tags:
+  - name: names
+    description: Procesos referidos a los nombres
+paths:
+  /names/proccess/{fullname}:
+    get:
+      tags:
+        - names
+      summary: Desglosa la información suministrada
+      description: Se trata de identificar de los datos suministrados -> apellido/s, nombre/s y sexo
+      operationId: names_proccess
+      parameters:
+        - name: fullname
+          in: path
+          description: Apellido/s y Nombre/s completo
+          required: true
+          schema:
+            type: string
+            example: Quaranta Viviana Cecilia
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Desglose'          
+        '400':
+          description: Bad Request
+components:
+  schemas:
+    DesItem:
+      type: object
+      properties:
+        palabra:
+          type: string
+          example: "Quaranta"
+        encontrada:
+          type: boolean
+          example: false
+        sexo:
+          type: string
+          example: "N"
+    Desglose:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          example: true
+        msg:
+          type: string
+          example:
+        data:
+          type: object
+          properties:
+            valor:
+              type: string
+              example: "Quaranta Viviana Cecilia"
+            apellidos:
+              type: string
+              example: "Quaranta"
+            nombres:
+              type: string
+              example: "Viviana Cecilia"
+            sexo:
+              type: string
+              example: "F"
+            exactitud:
+              type: number
+              format: double
+              example: 100,00
+            desgloce:
+              type: array
+              items:
+                $ref: '#/components/schemas/DesItem'
+              example: [
+                { "palabra": "Quaranta", "encontrada": false, "sexo": "N" },
+                { "palabra": "Viviana", "encontrada": true, "sexo": "F" },
+                { "palabra": "Cecilia", "encontrada": true, "sexo": "F" }
+              ]
