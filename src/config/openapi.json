@@ -10,6 +10,9 @@
   },
   "servers": [
     {
+      "url": "https://api-names-production.up.railway.app/api"
+    },
+    {
       "url": "http://localhost:3001/api"
     }
   ],
