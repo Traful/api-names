@@ -115,7 +115,7 @@
                 "format": "double",
                 "example": "100,00"
               },
-              "desgloce": {
+              "desglose": {
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/DesItem"

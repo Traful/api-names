@@ -28,7 +28,7 @@ export const existInNames = async (value) => {
 		nombres: null,
 		sexo: null,
 		exactitud: 0,
-		desgloce: []
+		desglose: []
 	};
 	try {
 		const pool = await conn();
@@ -53,7 +53,7 @@ export const existInNames = async (value) => {
 					sexo: encontrada.length > 0 ? encontrada[0].sexo : "N"
 				});
 			}
-			result.desgloce = buffer;
+			result.desglose = buffer;
 
 			let apellidos = buffer.filter(v => ((v.sexo === 'N') || (v.sexo === 'A')));
 			apellidos = apellidos.map(a => a.palabra);

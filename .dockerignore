@@ -1,7 +1,7 @@
+data
 node_modules
 *.env
 .env.example
 .gitignore
-nombres.sql
 README.md
 Dockerfile
